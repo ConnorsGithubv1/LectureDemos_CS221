@@ -1,0 +1,8 @@
+
+Let's us a queue to simulate the waiting line at a movie theater
+
+Goal : determine how many cashiers are needed to keep the wait time below 7 minutes.
+
+Assumptions-
+customers arrives on average every 15 seconds
+processing a request takes two minutes wonce a cusomter reaches a cashier
