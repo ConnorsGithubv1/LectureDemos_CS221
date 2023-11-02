@@ -12,5 +12,8 @@ public class RubberDuck extends Duck {
     public void swim() {
         System.out.println("Float and bob on the water.");
     }
+
+    public void play() {
+    }
     
 }
