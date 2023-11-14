@@ -16,7 +16,7 @@ public class ArrayOrderedList<E extends Comparable<E>> implements OrderedListADT
     @SuppressWarnings("unchecked")
     public ArrayOrderedList(int initialCapacity) {
         this.list = (E[])(new Comparable[initialCapacity]);
-        front = rear = count = 0;
+        front = rear = count = modCount = 0;
     }
 
     @Override
@@ -143,9 +143,9 @@ public class ArrayOrderedList<E extends Comparable<E>> implements OrderedListADT
             leftIndex = increment(leftIndex);
             rightIndex = increment(rightIndex);
         }
-        rear = decrement(rear);
         count--;
         modCount++;
+        rear = decrement(rear);
         this.list[rear] = null;
         return result;
     }
@@ -174,6 +174,7 @@ public class ArrayOrderedList<E extends Comparable<E>> implements OrderedListADT
             current = front;
             virtualIndex = 0;
             iterModCount = modCount;
+            canRemove = false;
         }
 
         @Override

@@ -25,7 +25,7 @@ public class ProgramOfStudy implements Serializable, Iterable<Course> {
 
     public Course find(String prefix, int number){
         for(Course course : list){
-            if(prefix.equals(course.getPrefix()) && number == course.getNumber()){
+            if(prefix.equalsIgnoreCase(course.getPrefix()) && number == course.getNumber()){
                 return course;
             }
         }
@@ -68,5 +68,6 @@ public class ProgramOfStudy implements Serializable, Iterable<Course> {
     @Override
     public Iterator<Course> iterator() {
         return list.iterator();
+    
     }
 }

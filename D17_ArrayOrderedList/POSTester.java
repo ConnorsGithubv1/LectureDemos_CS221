@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Iterator;
 
 public class POSTester {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -11,11 +12,26 @@ public class POSTester {
         pos.addCourse(new Course("PHYS", 211, "Physics for Scientists and Engineers I", Grade.C));
 
         System.out.println(pos);
-
-        System.out.println();
+        Course compTwo = pos.find("CPSC", 221);
+        System.out.println("\n" + compTwo + "\n");
+        compTwo.setGrade(Grade.A);
 
         pos.replace(new Course("PHYS", 212, ""), new Course("CHEM", 111, "General Chemistry I", Grade.A_MINUS));
 
+        for (Course course : pos) {
+            if(course.getGrade().getRank() >= 10){
+                System.out.println(course);
+            }
+        }
+        System.out.println();
+
+        Iterator<Course> iter = pos.iterator();
+
+        while (iter.hasNext()) {
+            Course course = iter.next();
+        }
+
+        
         //String fileName = "ProgramOfStudy.dat";
         // pos.save(fileName);
         //ProgramOfStudy pos = ProgramOfStudy.load(fileName);
