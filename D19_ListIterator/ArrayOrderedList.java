@@ -226,7 +226,12 @@ public class ArrayOrderedList<E extends Comparable<E>> implements OrderedListADT
         private int virtualNextIndex;
 
         public ArrayCursor(int nextIndex){
-            this.virtualNextIndex = nextIndex;
+            if (nextIndex < 0 || nextIndex > size()){ throw new IndexOutOfBoundsException();}
+                this.virtualNextIndex = nextIndex;
+        }
+
+        public void rightShift(){
+            
         }
     }
 
