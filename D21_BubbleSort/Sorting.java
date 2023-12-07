@@ -110,4 +110,61 @@ public class Sorting {
 
         return right;
     }
+
+    public static <E extends Comparable<E>> void mergeSort(E[] data, int min, int max) {
+        if (min == max) {
+            return; //base case
+        }
+
+        int mid = (min + max) / 2;
+
+        // sort left half
+        mergeSort(data, min, mid);
+
+        // sort right half
+        mergeSort(data, mid + 1, max);
+
+        // merge the sorted halves
+        merge(data, min, mid, max);
+    }
+
+    private static <E extends Comparable<E>> void merge(E[] data, int first, int midPoint, int last) {
+        E[] temp= (E[])(new Comparable[data.length]); //this is our playground array
+
+        int firstLeft = first, lastLeft = midPoint; //index for the left subarray
+        int firstRight = midPoint + 1, lastRight = last; //index for the right subarray
+
+        int index = first; //index for the temp array
+
+        while (firstLeft <= lastLeft && firstRight <= lastRight) {
+            if (data[firstLeft].compareTo(data[firstRight]) < 0) { //left element is smaller
+                temp[index] = data[firstLeft];
+                firstLeft++;
+            } else {
+                temp[index] = data[firstRight];
+                firstRight++;
+            }
+
+            index++;
+        }
+
+        // copy any remaining elements from the left half
+        while (firstLeft <= lastLeft) {
+            temp[index] = data[firstLeft];
+            firstLeft++;
+            index++;
+        }
+
+        // copy any remaining elements from the right half
+        while (firstRight <= lastRight) {
+            temp[index] = data[firstRight];
+            firstRight++;
+            index++;
+        }
+
+        // copy the merged data into the original array
+        for (index = first; index <= last; index++) {
+            data[index] = temp[index];
+        }
+    }
 }
